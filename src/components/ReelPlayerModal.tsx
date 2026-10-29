@@ -154,8 +154,8 @@ export const ReelPlayerModal: React.FC<ReelPlayerModalProps> = ({
 
             {/* Video Header Overlay */}
             <div className="relative z-10 flex items-center justify-between">
-              <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 text-xs">
-                <MapPin className="w-3.5 h-3.5 text-[#00A693]" />
+              <div className="flex items-center gap-2 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-xs">
+                <MapPin className="w-3.5 h-3.5 text-emerald-400" />
                 <span>{reel.location}</span>
                 <span>·</span>
                 <span className="font-mono">{toBengaliNumerals(reel.duration)}</span>
@@ -178,7 +178,7 @@ export const ReelPlayerModal: React.FC<ReelPlayerModalProps> = ({
               <button
                 type="button"
                 onClick={() => setIsPlaying(!isPlaying)}
-                className="w-16 h-16 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md flex items-center justify-center text-white transition-transform active:scale-95 border border-white/30 shadow-lg"
+                className="w-16 h-16 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md flex items-center justify-center text-white transition-transform active:scale-95 border border-white/30 shadow-lg cursor-pointer"
                 aria-label={isPlaying ? 'ভিডিও থামান' : 'ভিডিও চালু করুন'}
               >
                 {isPlaying ? <Pause className="w-7 h-7" /> : <Play className="w-7 h-7 fill-white ml-1" />}
@@ -188,7 +188,7 @@ export const ReelPlayerModal: React.FC<ReelPlayerModalProps> = ({
             {/* Bottom Details Overlay */}
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-full ring-2 ring-[#00A693] overflow-hidden bg-stone-700 flex items-center justify-center text-sm font-bold text-white">
+                <div className="w-10 h-10 rounded-full ring-2 ring-emerald-400 overflow-hidden bg-stone-700 flex items-center justify-center text-sm font-bold text-white shadow-md">
                   {reel.creator.slice(0, 2)}
                 </div>
                 <div>
@@ -197,14 +197,14 @@ export const ReelPlayerModal: React.FC<ReelPlayerModalProps> = ({
                 </div>
               </div>
 
-              <h3 className="text-base sm:text-lg font-bold text-white leading-snug mb-3 drop-shadow">
+              <h3 className="text-base sm:text-lg font-bold text-white leading-snug mb-3 drop-shadow font-editorial">
                 {reel.title}
               </h3>
 
               {/* Progress bar simulation */}
               <div className="w-full bg-white/20 h-1.5 rounded-full overflow-hidden mb-2">
                 <div
-                  className="bg-[#00A693] h-full rounded-full transition-all duration-300"
+                  className="bg-emerald-400 h-full rounded-full transition-all duration-300"
                   style={{ width: isPlaying ? '65%' : '30%' }}
                 />
               </div>
@@ -284,12 +284,12 @@ export const ReelPlayerModal: React.FC<ReelPlayerModalProps> = ({
               value={commentInput}
               onChange={(e) => setCommentInput(e.target.value)}
               placeholder="আপনার মতামত লিখুন..."
-              className="flex-1 px-3 py-2 text-xs bg-stone-800 border border-stone-700 rounded-lg text-white placeholder:text-stone-500 focus:outline-none focus:border-[#00A693]"
+              className="flex-1 px-3 py-2 text-xs bg-stone-800 border border-stone-700 rounded-lg text-white placeholder:text-stone-500 focus:outline-none focus:border-emerald-400 font-medium"
             />
             <button
               type="submit"
               disabled={!commentInput.trim()}
-              className="p-2 rounded-lg bg-[#00A693] hover:bg-[#00897B] disabled:opacity-40 text-white transition-colors"
+              className="p-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 text-white transition-colors cursor-pointer"
               aria-label="মন্তব্য পোস্ট করুন"
             >
               <Send className="w-4 h-4" />

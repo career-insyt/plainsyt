@@ -30,7 +30,7 @@ export const ImageGraphic: React.FC<ImageGraphicProps> = ({
       role="img"
     >
       {type === 'drone' && (
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0D5C52] via-[#0E7A6E] to-[#134E4A] flex items-center justify-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#04301F] via-[#09472E] to-[#0F5E3E] flex items-center justify-center">
           {/* Subtle paddy field contours */}
           <svg className="absolute inset-0 w-full h-full opacity-35" viewBox="0 0 600 340" preserveAspectRatio="none">
             <path d="M0,180 Q150,140 300,190 T600,160 L600,340 L0,340 Z" fill="#064E3B" />
@@ -193,7 +193,7 @@ export const ImageGraphic: React.FC<ImageGraphicProps> = ({
       )}
 
       {type === 'sensor' && (
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F766E] via-[#0D9488] to-[#115E59] flex items-center justify-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#04301F] via-[#0D5E3A] to-[#15803D] flex items-center justify-center">
           <div className="relative z-10 flex flex-col items-center text-teal-100">
             <div className="p-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg text-teal-300 mb-2">
               <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">

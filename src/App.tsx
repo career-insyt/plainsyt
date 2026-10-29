@@ -98,7 +98,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-stone-900 selection:bg-[#00A693]/20 selection:text-[#00695C]">
+    <div className="min-h-screen flex flex-col bg-[#FDFAF5] text-[#04301F] selection:bg-[#04301F] selection:text-[#FDFAF4] font-sans">
       {/* 1. Header Bar */}
       <Header
         searchQuery={searchQuery}

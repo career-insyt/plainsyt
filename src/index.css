@@ -1,1 +1,79 @@
 @import "tailwindcss";
+
+@theme {
+  --color-pine-950: #021a11;
+  --color-pine-900: #04301f;
+  --color-pine-800: #09472e;
+  --color-pine-700: #0f5e3e;
+  --color-pine-600: #17754f;
+  --color-pine-500: #218f62;
+  --color-pine-400: #38b17e;
+  --color-pine-200: #bbf0d8;
+  --color-pine-100: #e2f5ec;
+  --color-pine-50: #f0faf5;
+
+  --color-canvas: #fdfaf5;
+  --color-canvas-card: #ffffff;
+  --color-canvas-subtle: #f5f1e8;
+  --color-canvas-border: #e6dfd1;
+
+  --font-serif-display: "Fraunces", Georgia, serif;
+  --font-sans: "Hind Siliguri", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Plainsyt Tactile 3D Block-Shadow Utilities matching Logo Genre */
+.shadow-tactile-xs {
+  box-shadow: 1.5px 1.5px 0px #04301f;
+}
+
+.shadow-tactile-sm {
+  box-shadow: 2px 2px 0px #04301f;
+}
+
+.shadow-tactile {
+  box-shadow: 3px 3px 0px #04301f;
+}
+
+.shadow-tactile-lg {
+  box-shadow: 4px 4px 0px #04301f;
+}
+
+.shadow-tactile-hover {
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.15s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.shadow-tactile-hover:hover {
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: 4px 4px 0px #04301f;
+}
+
+.shadow-tactile-hover:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1.5px 1.5px 0px #04301f;
+}
+
+/* Newsprint & Editorial Grain and Typography */
+.font-editorial {
+  font-family: "Fraunces", Georgia, serif;
+  font-feature-settings: "liga" 1, "kern" 1;
+}
+
+/* Custom refined scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f1e8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #04301f;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0f5e3e;
+}

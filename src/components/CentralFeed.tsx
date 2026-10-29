@@ -11,11 +11,9 @@ import {
   Clock,
   Microscope,
   Compass,
-  Building2,
-  CheckCircle2,
   Send,
-  ExternalLink,
   SearchX,
+  Search,
 } from 'lucide-react';
 import { Article, StoryReel, FeedFilter, ArticleCategory, Comment } from '../types/index.ts';
 import { ImageGraphic } from './ImageGraphic.tsx';
@@ -98,35 +96,38 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
   ];
 
   return (
-    <main className="flex-1 max-w-2xl xl:max-w-3xl py-4 space-y-4 min-w-0" id="main-content">
+    <main className="flex-1 max-w-2xl xl:max-w-3xl py-4 space-y-5 min-w-0" id="main-content">
       
       {/* 1. Horizontal Short-Form Video Reels Carousel */}
       <section
         id="reels-carousel"
         aria-label="কৃষি রিলস ও মাঠের ভিডিও"
-        className="bg-white/90 border border-stone-200/80 rounded-2xl p-3.5 shadow-xs"
+        className="bg-white border-2 border-[#04301F]/15 rounded-2xl p-4 shadow-tactile-sm"
       >
         <div className="flex items-center justify-between mb-3 px-1">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-md bg-rose-500/10 text-rose-600 flex items-center justify-center">
-              <Play className="w-3.5 h-3.5 fill-rose-600 ml-0.5" />
+            <div className="w-7 h-7 rounded-lg bg-[#04301F] text-[#FDFAF4] flex items-center justify-center shadow-tactile-xs">
+              <Play className="w-3.5 h-3.5 fill-[#FDFAF4] ml-0.5" />
             </div>
-            <h2 className="text-xs sm:text-sm font-bold text-stone-900">
-              কৃষি রিলস ও মাঠের ভিডিও
-            </h2>
+            <div>
+              <h2 className="text-xs sm:text-sm font-bold text-[#04301F] tracking-tight">
+                কৃষি রিলস ও মাঠের ভিডিও
+              </h2>
+            </div>
           </div>
-          <span className="text-[11px] font-semibold text-[#00A693] hover:underline cursor-pointer">
-            সকল রিলস &rarr;
+          <span className="text-[11px] font-bold text-[#04301F] hover:underline cursor-pointer flex items-center gap-1 font-mono">
+            <span>সকল রিলস</span>
+            <span>&rarr;</span>
           </span>
         </div>
 
         {/* Carousel container */}
-        <div className="flex gap-2.5 overflow-x-auto pb-1 scrollbar-thin scroll-smooth snap-x snap-mandatory">
+        <div className="flex gap-3 overflow-x-auto pb-1.5 scrollbar-thin scroll-smooth snap-x snap-mandatory">
           {reels.map((reel) => (
             <div
               key={reel.id}
               onClick={() => onOpenReel(reel.id)}
-              className="relative w-32 sm:w-36 h-52 sm:h-56 shrink-0 rounded-xl overflow-hidden cursor-pointer group shadow-xs snap-start transition-transform hover:-translate-y-0.5 select-none"
+              className="relative w-32 sm:w-36 h-52 sm:h-56 shrink-0 rounded-xl overflow-hidden cursor-pointer group shadow-tactile-xs border border-[#04301F]/20 snap-start transition-all hover:-translate-y-1 hover:shadow-tactile select-none"
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
@@ -139,24 +140,24 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
 
               {/* Creator avatar on top */}
               <div className="absolute top-2.5 left-2.5 z-10 flex items-center gap-1.5">
-                <div className="w-7 h-7 rounded-full ring-2 ring-white/90 bg-white/20 text-white flex items-center justify-center text-[10px] font-bold">
+                <div className="w-7 h-7 rounded-full ring-2 ring-white/90 bg-[#04301F] text-[#FDFAF4] flex items-center justify-center text-[10px] font-bold">
                   {reel.creator.slice(0, 2)}
                 </div>
               </div>
 
               {/* Center Play Button Overlay */}
               <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="w-9 h-9 rounded-full bg-black/40 group-hover:bg-[#00A693] text-white flex items-center justify-center transition-colors backdrop-blur-xs">
+                <div className="w-10 h-10 rounded-full bg-[#04301F]/80 group-hover:bg-[#04301F] border-2 border-[#FDFAF4] text-white flex items-center justify-center transition-all shadow-md group-hover:scale-110">
                   <Play className="w-4 h-4 fill-white ml-0.5" />
                 </div>
               </div>
 
               {/* Bottom details */}
-              <div className="absolute inset-x-0 bottom-0 p-2.5 z-10 bg-gradient-to-t from-black/85 via-black/40 to-transparent text-white">
+              <div className="absolute inset-x-0 bottom-0 p-2.5 z-10 bg-gradient-to-t from-black/90 via-black/50 to-transparent text-white">
                 <p className="text-[11px] font-bold line-clamp-2 leading-tight drop-shadow mb-1">
                   {reel.title}
                 </p>
-                <div className="flex items-center justify-between text-[10px] text-white/80 font-mono">
+                <div className="flex items-center justify-between text-[10px] text-white/90 font-mono font-medium">
                   <span>{formatBengaliNumberCompact(reel.views)} ভিউ</span>
                   <span>{toBengaliNumerals(reel.duration)}</span>
                 </div>
@@ -166,54 +167,54 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
         </div>
       </section>
 
-      {/* 2. Create Post / Share Tip Box (Facebook web style) */}
+      {/* 2. Create Post / Share Tip Box */}
       <section
         aria-label="মাঠের তথ্য জানান"
-        className="bg-white/90 border border-stone-200/80 rounded-2xl p-3.5 shadow-xs"
+        className="bg-white border-2 border-[#04301F]/15 rounded-2xl p-4 shadow-tactile-sm"
       >
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-[#00A693]/15 text-[#00897B] font-bold flex items-center justify-center text-xs shrink-0 ring-1 ring-[#00A693]/20">
-            প্লা
+          <div className="w-9 h-9 rounded-xl bg-[#04301F] text-[#FDFAF4] font-bold flex items-center justify-center text-xs shrink-0 shadow-tactile-xs">
+            <Search className="w-4 h-4 text-emerald-300" />
           </div>
           <button
             type="button"
             onClick={onOpenCreatePost}
-            className="flex-1 text-left px-4 py-2 bg-stone-100/80 hover:bg-stone-200/60 rounded-full text-xs text-stone-500 transition-colors truncate"
+            className="flex-1 text-left px-4 py-2.5 bg-[#FDFAF5] hover:bg-[#F5F1E8] border border-[#04301F]/20 rounded-xl text-xs text-[#04301F]/70 font-medium transition-all truncate shadow-inner cursor-pointer"
           >
             আপনার এলাকার ফসলের রোগ, ড্রোন বা মাঠের অভিজ্ঞতা জানান...
           </button>
         </div>
 
-        <div className="flex items-center justify-between pt-2.5 mt-2.5 border-t border-stone-100 text-xs text-stone-600">
+        <div className="flex items-center justify-between pt-3 mt-3 border-t border-[#04301F]/10 text-xs font-semibold text-[#04301F]">
           <button
             type="button"
             onClick={onOpenCreatePost}
-            className="flex items-center gap-1.5 px-3 py-1 rounded-lg hover:bg-stone-100 transition-colors text-emerald-700 font-medium"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-[#04301F]/5 transition-colors text-emerald-800"
           >
-            <Sparkles className="w-4 h-4 text-emerald-600" />
+            <Sparkles className="w-4 h-4 text-emerald-700" />
             <span>মাঠের আপডেট</span>
           </button>
           <button
             type="button"
             onClick={() => onSelectCategory('গবেষণা সহজ ভাষায়')}
-            className="flex items-center gap-1.5 px-3 py-1 rounded-lg hover:bg-stone-100 transition-colors text-[#00897B] font-medium"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-[#04301F]/5 transition-colors text-[#04301F]"
           >
-            <Microscope className="w-4 h-4 text-[#00A693]" />
+            <Microscope className="w-4 h-4 text-[#04301F]" />
             <span>গবেষণা প্রশ্ন</span>
           </button>
           <button
             type="button"
             onClick={onOpenCreatePost}
-            className="flex items-center gap-1.5 px-3 py-1 rounded-lg hover:bg-stone-100 transition-colors text-amber-700 font-medium"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-[#04301F]/5 transition-colors text-amber-800"
           >
             <span>💡 সফল চাষাবাদ টিপস</span>
           </button>
         </div>
       </section>
 
-      {/* 3. Feed Filter Controls (Segmented clean buttons) */}
+      {/* 3. Feed Filter Controls */}
       <div className="flex items-center justify-between gap-2 overflow-x-auto pb-1 scrollbar-none">
-        <div className="flex items-center gap-1 p-1 bg-stone-200/60 rounded-xl" role="tablist">
+        <div className="flex items-center gap-1.5 p-1.5 bg-[#F5F1E8] border border-[#04301F]/15 rounded-xl shadow-inner" role="tablist">
           {filterTabs.map((tab) => {
             const isActive = activeFilter === tab.id;
             return (
@@ -223,13 +224,13 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
                 aria-selected={isActive}
                 type="button"
                 onClick={() => onFilterChange(tab.id)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg transition-all whitespace-nowrap shrink-0 cursor-pointer ${
                   isActive
-                    ? 'bg-white text-stone-900 shadow-xs font-semibold'
-                    : 'text-stone-600 hover:text-stone-900'
+                    ? 'bg-[#04301F] text-[#FDFAF4] shadow-tactile-sm border border-[#04301F]'
+                    : 'text-[#04301F]/80 hover:text-[#04301F] hover:bg-white/60'
                 }`}
               >
-                <span className={isActive ? 'text-[#00A693]' : 'text-stone-500'}>
+                <span className={isActive ? 'text-amber-300' : 'text-[#04301F]/60'}>
                   {tab.icon}
                 </span>
                 <span>{tab.label}</span>
@@ -240,9 +241,9 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
 
         {/* Active search or category tag indicator */}
         {(searchQuery || selectedCategory !== 'সকল') && (
-          <div className="flex items-center gap-1.5 text-xs text-stone-500 whitespace-nowrap shrink-0">
-            <span>ফিল্টার:</span>
-            <span className="font-semibold text-[#00897B]">
+          <div className="flex items-center gap-1.5 text-xs font-mono text-[#04301F] whitespace-nowrap shrink-0 bg-white border border-[#04301F]/20 px-2.5 py-1 rounded-lg">
+            <span className="text-[#04301F]/60">ফিল্টার:</span>
+            <span className="font-bold text-[#04301F]">
               {selectedCategory !== 'সকল' ? selectedCategory : `"${searchQuery}"`}
             </span>
             <button
@@ -251,9 +252,9 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
                 onClearSearch();
                 onSelectCategory('সকল');
               }}
-              className="text-stone-400 hover:text-stone-600 ml-1 underline"
+              className="text-[#04301F] hover:underline ml-1 font-bold"
             >
-              রিসেট
+              [✕]
             </button>
           </div>
         )}
@@ -261,10 +262,10 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
 
       {/* 4. Article Feed List */}
       {articles.length === 0 ? (
-        <div className="bg-white border border-stone-200 rounded-2xl p-10 text-center shadow-xs">
-          <SearchX className="w-12 h-12 mx-auto text-stone-300 mb-3" />
-          <h3 className="text-sm font-bold text-stone-800 mb-1">কোনো প্রতিবেদন খুঁজে পাওয়া যায়নি</h3>
-          <p className="text-xs text-stone-500 max-w-sm mx-auto mb-4">
+        <div className="bg-white border-2 border-[#04301F] rounded-2xl p-10 text-center shadow-tactile-lg">
+          <SearchX className="w-12 h-12 mx-auto text-[#04301F]/40 mb-3" />
+          <h3 className="text-sm font-bold text-[#04301F] mb-1">কোনো প্রতিবেদন খুঁজে পাওয়া যায়নি</h3>
+          <p className="text-xs text-[#04301F]/70 max-w-sm mx-auto mb-4 font-medium">
             আপনার অনুসন্ধান বা নির্বাচিত ক্যাটাগরির সাথে মিলে এমন কোনো ফলাফল নেই। অন্য কোনো শব্দ দিয়ে চেষ্টা করুন।
           </p>
           <button
@@ -273,13 +274,13 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
               onClearSearch();
               onSelectCategory('সকল');
             }}
-            className="px-4 py-1.5 text-xs font-semibold text-white bg-[#00A693] hover:bg-[#00897B] rounded-lg transition-colors"
+            className="px-4 py-2 text-xs font-bold text-[#FDFAF4] bg-[#04301F] hover:bg-[#09472e] rounded-lg shadow-tactile-sm transition-all"
           >
             সব প্রতিবেদন দেখুন
           </button>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-5">
           {articles.map((article, index) => {
             const isBookmarked = bookmarkedIds.includes(article.id);
             const isCommentBoxOpen = activeCommentBoxId === article.id;
@@ -289,37 +290,52 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
             return (
               <article
                 key={article.id}
-                className={`bg-white border rounded-2xl overflow-hidden transition-all shadow-xs hover:border-[#00A693]/40 ${
-                  isLeadStory ? 'border-[#00A693]/30 ring-1 ring-[#00A693]/10' : 'border-stone-200/80'
+                className={`bg-white border-2 rounded-2xl overflow-hidden transition-all shadow-tactile-sm hover:shadow-tactile-lg hover:-translate-y-0.5 ${
+                  isLeadStory
+                    ? 'border-[#04301F] ring-2 ring-[#04301F]/20'
+                    : 'border-[#04301F]/20 hover:border-[#04301F]'
                 }`}
               >
                 {/* Visual Header Graphic */}
                 <div
-                  className="cursor-pointer group relative"
+                  className="cursor-pointer group relative overflow-hidden"
                   onClick={() => onOpenArticle(article)}
                 >
                   <ImageGraphic
                     type={article.imageType}
                     title={article.title}
-                    aspect={isLeadStory ? '16/9' : '16/9'}
+                    aspect="16/9"
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors pointer-events-none" />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-[#04301F]/10 transition-colors pointer-events-none" />
+                  
+                  {isLeadStory && (
+                    <div className="absolute top-3 left-3 z-20">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#04301F] text-[#FDFAF4] text-[11px] font-bold font-mono uppercase tracking-wider rounded-lg shadow-tactile-xs border border-[#FDFAF4]/40">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                        <span>প্রধান অনুসন্ধান · LEAD STORY</span>
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Card Content Area */}
-                <div className="p-4 sm:p-5">
+                <div className="p-5 sm:p-6">
                   
-                  {/* Clean unboxed metadata kicker (Zero-Pill Discipline) */}
-                  <div className="flex items-center gap-2 text-xs text-[#00897B] font-mono mb-2">
-                    <span className="font-semibold uppercase">{article.category}</span>
-                    <span aria-hidden="true" className="text-stone-300">·</span>
-                    <span className="text-stone-500 font-sans">
+                  {/* Clean unboxed metadata kicker */}
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#04301F] mb-2.5">
+                    <span className="uppercase tracking-wider px-2 py-0.5 bg-[#04301F]/10 rounded text-[11px]">
+                      {article.category}
+                    </span>
+                    <span aria-hidden="true" className="text-[#04301F]/30">·</span>
+                    <span className="text-[#04301F]/70 font-sans font-medium">
                       {toBengaliNumerals(article.readTimeMinutes)} মিনিট পাঠ
                     </span>
                     {article.researchBasis && (
                       <>
-                        <span aria-hidden="true" className="text-stone-300">·</span>
-                        <span className="text-emerald-700 font-sans font-medium">বিজ্ঞানভিত্তিক প্রতিবেদন</span>
+                        <span aria-hidden="true" className="text-[#04301F]/30">·</span>
+                        <span className="text-emerald-800 font-sans font-semibold">
+                          বিজ্ঞানভিত্তিক প্রতিবেদন
+                        </span>
                       </>
                     )}
                   </div>
@@ -327,42 +343,42 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
                   {/* Title & Deck */}
                   <h2
                     onClick={() => onOpenArticle(article)}
-                    className={`font-bold text-stone-900 hover:text-[#00897B] transition-colors cursor-pointer leading-snug tracking-tight mb-2 ${
-                      isLeadStory ? 'text-lg sm:text-xl' : 'text-base sm:text-lg'
+                    className={`font-bold text-[#04301F] hover:text-[#09472e] transition-colors cursor-pointer leading-snug tracking-tight mb-2.5 ${
+                      isLeadStory ? 'text-lg sm:text-2xl font-editorial' : 'text-base sm:text-xl font-editorial'
                     }`}
                     style={{ textWrap: 'balance' }}
                   >
                     {article.title}
                   </h2>
 
-                  <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 leading-relaxed mb-4">
+                  <p className="text-xs sm:text-sm text-[#04301F]/80 line-clamp-2 leading-relaxed mb-4 font-normal">
                     {article.subtitle}
                   </p>
 
                   {/* Key Takeaways preview for lead story */}
                   {isLeadStory && article.takeaways && article.takeaways.length > 0 && (
-                    <div className="mb-4 p-3 bg-stone-50 border border-stone-200/70 rounded-xl">
-                      <span className="text-[11px] font-bold text-[#00897B] uppercase block mb-1.5">
-                        প্রধান প্রাপ্তি:
+                    <div className="mb-4 p-3.5 bg-[#F5F1E8] border-2 border-[#04301F]/20 rounded-xl">
+                      <span className="text-[11px] font-bold text-[#04301F] uppercase font-mono tracking-wider block mb-1">
+                        প্রধান প্রাপ্তি ও সারসংক্ষেপ:
                       </span>
-                      <p className="text-xs text-stone-700 leading-relaxed flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#00A693] mt-1.5 shrink-0" />
+                      <p className="text-xs text-[#04301F] leading-relaxed flex items-start gap-2 font-medium">
+                        <span className="w-2 h-2 rounded-full bg-[#04301F] mt-1 shrink-0" />
                         <span>{article.takeaways[0]}</span>
                       </p>
                     </div>
                   )}
 
                   {/* Author Byline */}
-                  <div className="flex items-center justify-between gap-3 pt-3 border-t border-stone-100 mb-3">
+                  <div className="flex items-center justify-between gap-3 pt-3.5 border-t border-[#04301F]/15 mb-3.5">
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="w-8 h-8 rounded-full bg-[#00A693]/15 text-[#00897B] font-bold flex items-center justify-center text-xs shrink-0 ring-1 ring-[#00A693]/20">
+                      <div className="w-8 h-8 rounded-lg bg-[#04301F] text-[#FDFAF4] font-bold flex items-center justify-center text-xs shrink-0 shadow-tactile-xs">
                         {article.author.name.slice(0, 2)}
                       </div>
                       <div className="min-w-0">
-                        <p className="text-xs font-bold text-stone-900 truncate">
+                        <p className="text-xs font-bold text-[#04301F] truncate">
                           {article.author.name}
                         </p>
-                        <p className="text-[10px] text-stone-500 truncate">
+                        <p className="text-[10px] text-[#04301F]/60 truncate font-mono">
                           {article.author.organization}
                         </p>
                       </div>
@@ -371,24 +387,24 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
                     <button
                       type="button"
                       onClick={() => onOpenArticle(article)}
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-[#00897B] hover:text-[#00695C] shrink-0"
+                      className="inline-flex items-center gap-1 text-xs font-bold text-[#04301F] hover:text-[#09472e] shrink-0 border-b border-[#04301F] pb-0.5 hover:border-b-2 transition-all"
                     >
                       <span>সম্পূর্ণ পড়ুন</span>
                       <ChevronRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
 
-                  {/* Interactive Reactions Strip (Social media style) */}
-                  <div className="flex items-center justify-between pt-2 border-t border-stone-100 text-stone-600">
-                    <div className="flex items-center gap-1 sm:gap-2">
+                  {/* Interactive Reactions Strip */}
+                  <div className="flex items-center justify-between pt-2.5 border-t border-[#04301F]/10 text-[#04301F]">
+                    <div className="flex items-center gap-1.5 sm:gap-2">
                       {/* Like Reaction */}
                       <button
                         type="button"
                         onClick={() => onToggleLike(article)}
-                        className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                           article.userLiked
-                            ? 'text-rose-600 bg-rose-50 font-semibold'
-                            : 'hover:bg-stone-100 text-stone-600 hover:text-stone-900'
+                            ? 'text-rose-600 bg-rose-50 border border-rose-200'
+                            : 'hover:bg-[#04301F]/10 text-[#04301F] border border-transparent'
                         }`}
                         aria-label={`লাইক করুন (${formatBengaliNumberCompact(article.stats.likes)})`}
                       >
@@ -402,10 +418,10 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
                       <button
                         type="button"
                         onClick={() => toggleCommentBox(article.id)}
-                        className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                           isCommentBoxOpen
-                            ? 'bg-[#00A693]/10 text-[#00897B]'
-                            : 'hover:bg-stone-100 text-stone-600 hover:text-stone-900'
+                            ? 'bg-[#04301F] text-[#FDFAF4] shadow-tactile-xs border border-[#04301F]'
+                            : 'hover:bg-[#04301F]/10 text-[#04301F] border border-transparent'
                         }`}
                         aria-label={`মন্তব্য দেখুন (${toBengaliNumerals(article.comments.length)})`}
                       >
@@ -419,7 +435,7 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
                       <button
                         type="button"
                         onClick={() => handleShareArticle(article.id)}
-                        className="relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium hover:bg-stone-100 text-stone-600 hover:text-stone-900 transition-colors"
+                        className="relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-[#04301F]/10 text-[#04301F] transition-all border border-transparent"
                         aria-label="প্রতিবেদন লিংক কপি করুন"
                       >
                         <Share2 className="w-4 h-4" />
@@ -427,7 +443,7 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
                           {toBengaliNumerals(article.stats.shares)}
                         </span>
                         {isCopied && (
-                          <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-[10px] bg-stone-900 text-white px-2 py-0.5 rounded shadow whitespace-nowrap">
+                          <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-[10px] bg-[#04301F] text-[#FDFAF4] px-2 py-0.5 rounded shadow whitespace-nowrap font-mono font-bold">
                             কপি হয়েছে!
                           </span>
                         )}
@@ -438,10 +454,10 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
                     <button
                       type="button"
                       onClick={() => onToggleBookmark(article.id)}
-                      className={`p-1.5 rounded-lg transition-colors ${
+                      className={`p-2 rounded-lg transition-all ${
                         isBookmarked
-                          ? 'text-amber-600 bg-amber-50'
-                          : 'text-stone-400 hover:text-stone-700 hover:bg-stone-100'
+                          ? 'text-amber-800 bg-amber-100 border border-amber-300'
+                          : 'text-[#04301F]/60 hover:text-[#04301F] hover:bg-[#04301F]/10'
                       }`}
                       title={isBookmarked ? 'সংরক্ষিত' : 'সংরক্ষণ করুন'}
                       aria-label={isBookmarked ? 'সংরক্ষণ বাতিল' : 'সংরক্ষণ করুন'}
@@ -452,17 +468,17 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
 
                   {/* Expandable Inline Comments Area */}
                   {isCommentBoxOpen && (
-                    <div className="mt-3 pt-3 border-t border-stone-100 space-y-2.5 animate-in fade-in duration-150">
+                    <div className="mt-3.5 pt-3.5 border-t border-[#04301F]/15 space-y-3 animate-in fade-in duration-150">
                       {/* Comments stream */}
                       {article.comments.length > 0 && (
                         <div className="space-y-2 max-h-48 overflow-y-auto pr-1 text-xs scrollbar-none">
                           {article.comments.map((comm) => (
-                            <div key={comm.id} className="p-2.5 rounded-xl bg-stone-50 border border-stone-200/60">
-                              <div className="flex items-center justify-between mb-0.5">
-                                <span className="font-bold text-stone-800">{comm.author}</span>
-                                <span className="text-[10px] text-stone-400 font-mono">{comm.timestamp}</span>
+                            <div key={comm.id} className="p-3 rounded-xl bg-[#FDFAF5] border border-[#04301F]/20">
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="font-bold text-[#04301F]">{comm.author}</span>
+                                <span className="text-[10px] text-[#04301F]/50 font-mono">{comm.timestamp}</span>
                               </div>
-                              <p className="text-stone-700">{comm.text}</p>
+                              <p className="text-[#04301F]/80 font-medium">{comm.text}</p>
                             </div>
                           ))}
                         </div>
@@ -482,13 +498,13 @@ export const CentralFeed: React.FC<CentralFeedProps> = ({
                               [article.id]: e.target.value,
                             }))
                           }
-                          placeholder="আপনার মতামত বা পর্যবেক্ষণ যোগ করুন..."
-                          className="flex-1 px-3 py-1.5 text-xs bg-stone-50 border border-stone-200 rounded-lg text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-1 focus:ring-[#00A693]"
+                          placeholder="আপনার পর্যবেক্ষণ বা মতামত লিখুন..."
+                          className="flex-1 px-3 py-2 text-xs bg-[#FDFAF5] border border-[#04301F]/20 rounded-lg text-[#04301F] placeholder:text-[#04301F]/40 focus:outline-none focus:border-[#04301F] font-medium"
                         />
                         <button
                           type="submit"
                           disabled={!inlineCommentInputs[article.id]?.trim()}
-                          className="px-3 py-1.5 text-xs font-semibold text-white bg-[#00A693] hover:bg-[#00897B] disabled:opacity-40 rounded-lg transition-colors flex items-center gap-1"
+                          className="px-3.5 py-2 text-xs font-bold text-[#FDFAF4] bg-[#04301F] hover:bg-[#09472e] disabled:opacity-40 rounded-lg transition-all shadow-tactile-xs flex items-center gap-1 cursor-pointer"
                         >
                           <Send className="w-3.5 h-3.5" />
                           <span>পাঠান</span>
