@@ -1,4 +1,14 @@
-import { Article, StoryReel, ResearchPaper, FeaturedScientist, MarketCommodity } from '../types/index.ts';
+import {
+  Article,
+  StoryReel,
+  ResearchPaper,
+  FeaturedScientist,
+  MarketCommodity,
+  CommunityPost,
+  TopicStory,
+  UpcomingEvent,
+  TrendingRankedItem,
+} from '../types/index.ts';
 
 export const INITIAL_ARTICLES: Article[] = [
   {
@@ -510,3 +520,252 @@ export const TRENDING_TAGS = [
   { tag: 'ভাসমান_কৃষি_বরিশাল', count: '৬.২ হাজার আলোচনা', topic: 'জলবায়ু' },
   { tag: 'স্মার্ট_ফার্মিং_আইওটি', count: '৫.৮ হাজার আলোচনা', topic: 'উদ্ভাবন' },
 ];
+
+export const TOPIC_STORIES: TopicStory[] = [
+  {
+    id: 'story-agritech',
+    title: 'AgriTech',
+    category: 'এগ্রি-টেক ও ড্রোন',
+    imageUrl: 'https://images.unsplash.com/photo-1527842891421-42eec6e703ea?auto=format&fit=crop&w=400&h=550&q=80',
+    iconName: 'drone',
+    readsCount: '18.4K',
+    authorName: 'Tanzim',
+    authorAvatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&h=100&q=80',
+  },
+  {
+    id: 'story-sustainable',
+    title: 'Sustainable Farming',
+    category: 'শস্য ও কৃষিবিজ্ঞান',
+    imageUrl: 'https://images.unsplash.com/photo-1592417817098-8f3d69106093?auto=format&fit=crop&w=400&h=550&q=80',
+    iconName: 'seedling',
+    readsCount: '24.1K',
+    authorName: 'Dr. Nusrat',
+    authorAvatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&h=100&q=80',
+  },
+  {
+    id: 'story-climate',
+    title: 'Climate Action',
+    category: 'জলবায়ু ও স্থায়িত্ব',
+    imageUrl: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&h=550&q=80',
+    iconName: 'climate',
+    readsCount: '15.9K',
+    authorName: 'Mehedi',
+    authorAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&h=100&q=80',
+  },
+  {
+    id: 'story-food',
+    title: 'Food & Nutrition',
+    category: 'খাদ্য ও কোল্ড চেইন',
+    imageUrl: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=400&h=550&q=80',
+    iconName: 'food',
+    readsCount: '12.8K',
+    authorName: 'Farhana',
+    authorAvatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&h=100&q=80',
+  },
+  {
+    id: 'story-rural',
+    title: 'Rural Development',
+    category: 'স্টার্টআপ ও উদ্ভাবন',
+    imageUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=400&h=550&q=80',
+    iconName: 'rural',
+    readsCount: '9.4K',
+    authorName: 'Shakil',
+    authorAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80',
+  },
+  {
+    id: 'story-policy',
+    title: 'Policy & Economy',
+    category: 'গবেষণা সহজ ভাষায়',
+    imageUrl: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=400&h=550&q=80',
+    iconName: 'policy',
+    readsCount: '11.2K',
+    authorName: 'Khabir',
+    authorAvatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80',
+  },
+];
+
+export const COMMUNITY_POSTS: CommunityPost[] = [
+  {
+    id: 'post-iot-mymensingh',
+    author: {
+      name: 'Mehedi Hasan',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80',
+      role: 'AgriTech Field Officer • Mymensingh',
+      isVerified: true,
+    },
+    timestamp: '২ ঘণ্টা আগে • Community Post',
+    content: 'Sharing some snapshots from our recent field visit to a smart farming project in Mymensingh. Amazing to see how IoT sensors are helping farmers monitor soil moisture and improve crop yield! সৌরচালিত সেন্সর দিয়ে রিয়েল-টাইম আর্দ্রতা ট্র্যাক করে সেচ দেওয়ায় পানির অপচয় প্রায় ৩৫% কমেছে। 🌱📡🌾',
+    images: [
+      'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=600&h=450&q=80',
+      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&h=450&q=80',
+      'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&h=450&q=80',
+    ],
+    stats: {
+      likes: 248,
+      commentsCount: 86,
+      shares: 34,
+    },
+    reactionsSummary: 'Sijan Rahman and 86 others',
+    comments: [
+      {
+        id: 'cp-c1',
+        author: 'তানভীর আহমেদ',
+        avatar: '',
+        role: 'কৃষিবিদ, বাকৃবি',
+        text: 'সেন্সরগুলোর ডেটা কি কৃষকরা মোবাইল অ্যাপে বাংলা ভাষায় দেখতে পাচ্ছেন?',
+        timestamp: '১ ঘণ্টা আগে',
+        likes: 14,
+      },
+      {
+        id: 'cp-c2',
+        author: 'Mehedi Hasan',
+        avatar: '',
+        role: 'লেখক',
+        text: 'হ্যাঁ ভাই! বাংলা ভয়েস অ্যালার্ট সহ এসএমএস অ্যালার্টের ব্যবস্থা রাখা হয়েছে।',
+        timestamp: '৪৫ মিনিট আগে',
+        likes: 21,
+      },
+    ],
+    userLiked: false,
+    userSaved: false,
+  },
+  {
+    id: 'post-al-amin-quote',
+    author: {
+      name: 'AL Amin Nur',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80',
+      role: 'Agri Enthusiast & Content Creator',
+      isVerified: true,
+    },
+    timestamp: '৩ দিন আগে • পাবলিক',
+    content: 'কিন্তু কৃষি তো আর্টস এর সাবজেক্ট 🤡\n\nঅথচ বাস্তবে আজকের কৃষি মানে ডেটা সায়েন্স, ড্রোন অটোনমি এবং জিনোম এডিটিং। যারা এখনো পুরোনো ভাবনায় আটকে আছেন, তাদের জন্য নিচের কথাগুলো স্মরণীয়:',
+    sharedPost: {
+      authorName: 'A.S.M Anas Ferdous',
+      authorAvatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&h=100&q=80',
+      timestamp: '৩ দিন আগে • পাবলিক',
+      text: '২০২৬ সালে আমি ভার্সিটি পড়ার সুযোগ পাইলে এগ্রিকালচার বা এই রিলেটেড জিনিসপাতি নিয়ে পড়তাম, আর কোন কিছু আমার জন্য সেইফ হইত না টু বি হনেস্ট দেখা যাইত পাশ করতে করতে আমার কাজ এখন একটা সাবস্ক্রিপশন কিনে করে ফেলতেছে মানুষজন। এবার যারা কৃষিতে এক্সাম দিবা, হাইয়েস্ট কম্পিটিশন ফেস করবা, টাইম যত যাবে কৃষির চাহিদা তত বাড়বে মার্ক মাই ওয়ার্ডস। আর কৃষিতে চান্স পাওয়া ক্যারিয়ারের এক বিশাল আশীর্বাদ।',
+    },
+    stats: {
+      likes: 512,
+      commentsCount: 142,
+      shares: 68,
+    },
+    reactionsSummary: 'Sijan Rahman, Anas and 510 others',
+    comments: [
+      {
+        id: 'cp-c3',
+        author: 'মো. শাহিনুর আলম',
+        avatar: '',
+        role: 'বাকৃবি শিক্ষার্থী',
+        text: 'একদম সত্য কথা। বর্তমানে কৃষিতে বায়োইনফরমেটিক্স ও রোবোটিক্স ছাড়া ভবিষ্যৎ অচল।',
+        timestamp: '২ দিন আগে',
+        likes: 45,
+      },
+    ],
+    userLiked: true,
+    userSaved: true,
+  },
+  {
+    id: 'post-soil-microbiome',
+    author: {
+      name: 'Dr. Nusrat Jahan',
+      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&h=120&q=80',
+      role: 'মৃত্তিকা ও বায়োটেক গবেষক',
+      isVerified: true,
+    },
+    timestamp: '৫ ঘণ্টা আগে • Research Note',
+    content: 'উপকূলীয় মাটির লবণাক্ততা নিয়ন্ত্রণে বায়োচার ও ট্রাইকোডার্মা প্রজাতির যৌথ প্রয়োগের ৩য় ধাপের মাঠ পরীক্ষা সম্পন্ন হয়েছে। ফলাফল অত্যন্ত আশাব্যঞ্জক—মাটিতে উপকারী ব্যাকটেরিয়ার উপনিবেশ প্রায় ৩৫% বৃদ্ধি পেয়েছে এবং বীজের অঙ্কুরোদগম হার বেড়েছে ১৮%! 🌾🔬',
+    images: [
+      'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=600&h=450&q=80',
+      'https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&w=600&h=450&q=80',
+    ],
+    stats: {
+      likes: 184,
+      commentsCount: 39,
+      shares: 26,
+    },
+    reactionsSummary: 'Dr. Tanvir and 183 others',
+    comments: [],
+    userLiked: false,
+    userSaved: false,
+  },
+];
+
+export const UPCOMING_EVENTS: UpcomingEvent[] = [
+  {
+    id: 'ev-1',
+    title: 'AgriTech Innovation Summit 2026',
+    dateMonth: 'DEC',
+    dateDay: '12',
+    location: 'Dhaka, Bangladesh',
+    attendeesCount: '120+ going',
+    isRegistered: false,
+  },
+  {
+    id: 'ev-2',
+    title: 'Sustainable Farming & Drone Workshop',
+    dateMonth: 'DEC',
+    dateDay: '18',
+    location: 'Online Event',
+    attendeesCount: '250+ going',
+    isRegistered: true,
+  },
+  {
+    id: 'ev-3',
+    title: 'Rural Youth Agri-Leadership Forum',
+    dateMonth: 'JAN',
+    dateDay: '05',
+    location: 'Chittagong, Bangladesh',
+    attendeesCount: '80+ going',
+    isRegistered: false,
+  },
+];
+
+export const TRENDING_RANKED: TrendingRankedItem[] = [
+  {
+    id: 'tr-1',
+    rank: '01',
+    title: "Bangladesh's Agricultural Exports Reach New Milestone",
+    reads: '4.2K reads',
+    comments: 12,
+    imageUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=120&h=90&q=80',
+    category: 'স্টার্টআপ ও উদ্ভাবন',
+  },
+  {
+    id: 'tr-2',
+    rank: '02',
+    title: 'Climate-Resilient Crops for a Changing World',
+    reads: '3.1K reads',
+    comments: 8,
+    imageUrl: 'https://images.unsplash.com/photo-1592417817098-8f3d69106093?auto=format&fit=crop&w=120&h=90&q=80',
+    category: 'জলবায়ু ও স্থায়িত্ব',
+  },
+  {
+    id: 'tr-3',
+    rank: '03',
+    title: 'AI in Agriculture: Hype or Real Impact?',
+    reads: '2.8K reads',
+    comments: 24,
+    imageUrl: 'https://images.unsplash.com/photo-1527842891421-42eec6e703ea?auto=format&fit=crop&w=120&h=90&q=80',
+    category: 'এগ্রি-টেক ও ড্রোন',
+  },
+  {
+    id: 'tr-4',
+    rank: '04',
+    title: 'The Future of Food Security in South Asia',
+    reads: '2.1K reads',
+    comments: 6,
+    imageUrl: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=120&h=90&q=80',
+    category: 'খাদ্য ও কোল্ড চেইন',
+  },
+  {
+    id: 'tr-5',
+    rank: '05',
+    title: 'Small Farmers, Big Solutions: Tech on 1 Acre',
+    reads: '1.9K reads',
+    comments: 4,
+    imageUrl: 'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=120&h=90&q=80',
+    category: 'শস্য ও কৃষিবিজ্ঞান',
+  },
+];
+

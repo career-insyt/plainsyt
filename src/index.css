@@ -22,6 +22,12 @@
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* Plainsyt Tactile 3D Block-Shadow Utilities matching Logo Genre */
 .shadow-tactile-xs {
   box-shadow: 1.5px 1.5px 0px #04301f;

@@ -97,3 +97,65 @@ export interface MarketCommodity {
   priceChange: number; // percentage
   trend: 'up' | 'down' | 'stable';
 }
+
+export type FormatFilter = 'all' | 'articles' | 'posts' | 'reels' | 'research';
+
+export interface CommunityPost {
+  id: string;
+  author: {
+    name: string;
+    avatar: string;
+    role: string;
+    isVerified?: boolean;
+  };
+  timestamp: string;
+  content: string;
+  images?: string[];
+  sharedPost?: {
+    authorName: string;
+    authorAvatar: string;
+    timestamp: string;
+    text: string;
+  };
+  stats: {
+    likes: number;
+    commentsCount: number;
+    shares: number;
+  };
+  reactionsSummary?: string;
+  comments: Comment[];
+  userLiked?: boolean;
+  userSaved?: boolean;
+}
+
+export interface TopicStory {
+  id: string;
+  title: string;
+  category: ArticleCategory;
+  imageUrl: string;
+  iconName: 'drone' | 'seedling' | 'climate' | 'food' | 'rural' | 'policy' | 'soil' | 'tech';
+  readsCount?: string;
+  authorName?: string;
+  authorAvatar?: string;
+}
+
+export interface UpcomingEvent {
+  id: string;
+  title: string;
+  dateMonth: string;
+  dateDay: string;
+  location: string;
+  attendeesCount: string;
+  isRegistered?: boolean;
+}
+
+export interface TrendingRankedItem {
+  id: string;
+  rank: string;
+  title: string;
+  reads: string;
+  comments: number;
+  imageUrl: string;
+  category: ArticleCategory;
+}
+

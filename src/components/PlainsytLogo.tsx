@@ -5,6 +5,7 @@ interface PlainsytLogoProps {
   height?: number | string;
   variant?: 'light-bg' | 'dark-bg';
   showTagline?: boolean;
+  usePng?: boolean;
 }
 
 export const PlainsytLogo: React.FC<PlainsytLogoProps> = ({
@@ -12,16 +13,25 @@ export const PlainsytLogo: React.FC<PlainsytLogoProps> = ({
   height = 36,
   variant = 'light-bg',
   showTagline = false,
+  usePng = false,
 }) => {
+  const primarySrc = usePng ? '/logo/Plainsyt 3D Green Wordmark.png' : '/logo/plainsyt.svg';
+  const fallbackSrc = '/logo/Plainsyt 3D Green Wordmark.png';
+
   return (
     <div className={`inline-flex items-center gap-2.5 select-none ${className}`}>
-      {/* Official Plainsyt SVG Logo */}
+      {/* Official Plainsyt Logo from /logo folder */}
       <img
-        src="/logo/plainsyt.svg"
+        src={primarySrc}
         alt="Plainsyt — Modern Agriculture & Agri-Tech Media"
         style={{ height: typeof height === 'number' ? `${height}px` : height }}
         className="w-auto max-w-full object-contain filter drop-shadow-[0_1px_1px_rgba(4,48,31,0.08)] transition-transform hover:scale-[1.02]"
         loading="eager"
+        onError={(e) => {
+          if (e.currentTarget.src !== fallbackSrc) {
+            e.currentTarget.src = fallbackSrc;
+          }
+        }}
       />
 
       {showTagline && (
