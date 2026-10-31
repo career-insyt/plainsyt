@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Header } from './components/Header.tsx';
+import { LeftSidebar } from './components/LeftSidebar.tsx';
 import { CentralFeed } from './components/CentralFeed.tsx';
 import { RightSidebar } from './components/RightSidebar.tsx';
 import { Footer } from './components/Footer.tsx';
@@ -7,6 +8,7 @@ import { ReelPlayerModal } from './components/ReelPlayerModal.tsx';
 import { ArticleReaderModal } from './components/ArticleReaderModal.tsx';
 import { SavedArticlesModal } from './components/SavedArticlesModal.tsx';
 import { CreatePostModal } from './components/CreatePostModal.tsx';
+import { FacebookCreatePostModal } from './components/FacebookCreatePostModal.tsx';
 import { AskAIModal } from './components/AskAIModal.tsx';
 
 import {
@@ -18,7 +20,7 @@ import {
   COMMUNITY_POSTS,
   TOPIC_STORIES,
 } from './data/mockData.ts';
-import { Article, ArticleCategory, FeedFilter, Comment, ResearchPaper, CommunityPost } from './types/index.ts';
+import { Article, ArticleCategory, Comment, ResearchPaper, CommunityPost } from './types/index.ts';
 import {
   filterArticles,
   toggleBookmarkId,
@@ -32,7 +34,6 @@ export default function App() {
   const [communityPosts, setCommunityPosts] = useState<CommunityPost[]>(COMMUNITY_POSTS);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<ArticleCategory>('সকল');
-  const [activeFilter, setActiveFilter] = useState<FeedFilter>('trending');
   const [activeNavTab, setActiveNavTab] = useState<string>('Home');
   
   // Bookmarks
@@ -43,12 +44,13 @@ export default function App() {
   const [activeReelId, setActiveReelId] = useState<string | null>(null);
   const [isSavedDrawerOpen, setIsSavedDrawerOpen] = useState(false);
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false);
+  const [isFacebookCreatePostOpen, setIsFacebookCreatePostOpen] = useState(false);
   const [isAskAIOpen, setIsAskAIOpen] = useState(false);
 
   // Filtered Articles via pure logic function
   const filteredArticles = useMemo(() => {
-    return filterArticles(articles, searchQuery, selectedCategory, activeFilter);
-  }, [articles, searchQuery, selectedCategory, activeFilter]);
+    return filterArticles(articles, searchQuery, selectedCategory, 'trending');
+  }, [articles, searchQuery, selectedCategory]);
 
   // Bookmarked articles list
   const savedArticles = useMemo(() => {
@@ -80,6 +82,10 @@ export default function App() {
   const handleCreateArticle = (newArticle: Article) => {
     setArticles((prev) => [newArticle, ...prev]);
     setSelectedCategory('সকল');
+  };
+
+  const handleCreateCommunityPost = (newPost: CommunityPost) => {
+    setCommunityPosts((prev) => [newPost, ...prev]);
   };
 
   // Handlers for Community Posts
@@ -158,7 +164,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FDFAF5] text-[#04301F] selection:bg-[#04301F] selection:text-[#FDFAF4] font-sans">
-      {/* 1. Header Bar (Desktop & Facebook Mobile Icon Nav) */}
+      {/* 1. Header Bar (Small round search + Exactly Centered Navbar Tabs) */}
       <Header
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
@@ -166,33 +172,39 @@ export default function App() {
         onSelectCategory={setSelectedCategory}
         savedCount={savedArticles.length}
         onOpenSaved={() => setIsSavedDrawerOpen(true)}
-        onOpenNewPost={() => setIsCreatePostOpen(true)}
+        onOpenNewPost={() => setIsFacebookCreatePostOpen(true)}
         activeNavTab={activeNavTab}
         onSelectNavTab={handleSelectNavTab}
         onScrollToReels={() => setActiveReelId(reels[0]?.id || 'reel-1')}
       />
 
-      {/* 2. Main Content & Right Sidebar Layout */}
-      <div className="max-w-7xl mx-auto px-2.5 sm:px-6 flex-1 w-full flex items-start justify-center gap-6 lg:gap-8">
+      {/* 2. Main 3-Column Layout: Left Sidebar + Centered Newsfeed + Right Sidebar */}
+      <div className="w-full max-w-7xl mx-auto px-2 sm:px-4 flex-1 flex items-start justify-between gap-4 lg:gap-6">
+        
+        {/* Left Sidebar (Shortcuts, OpenAlex Topics, Research Network) */}
+        <LeftSidebar
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+          savedCount={savedArticles.length}
+          onOpenSaved={() => setIsSavedDrawerOpen(true)}
+          onScrollToReels={() => setActiveReelId(reels[0]?.id || 'reel-1')}
+          onOpenEditorialPolicy={() => setActiveReadingArticle(articles[0])}
+          onOpenAskAI={() => setIsAskAIOpen(true)}
+        />
 
-        {/* Central Content Feed */}
+        {/* Central Content Feed - Width matches the centered navbar buttons */}
         <CentralFeed
           articles={filteredArticles}
           reels={reels}
-          activeFilter={activeFilter}
-          onFilterChange={setActiveFilter}
           selectedCategory={selectedCategory}
-          onSelectCategory={(cat) => {
-            setSelectedCategory(cat);
-            setSearchQuery('');
-          }}
+          onSelectCategory={setSelectedCategory}
           onOpenArticle={(art) => setActiveReadingArticle(art)}
           onOpenReel={(id) => setActiveReelId(id)}
-          onOpenCreatePost={() => setIsCreatePostOpen(true)}
+          onOpenCreatePost={() => setIsFacebookCreatePostOpen(true)}
           onOpenWriteArticle={() => setIsCreatePostOpen(true)}
           onOpenUploadVideo={() => setActiveReelId(reels[0]?.id || 'reel-1')}
           onOpenAskAI={() => setIsAskAIOpen(true)}
-          onOpenCreateStory={() => setIsCreatePostOpen(true)}
+          onOpenCreateStory={() => setIsFacebookCreatePostOpen(true)}
           bookmarkedIds={bookmarkedIds}
           onToggleBookmark={handleToggleBookmark}
           onToggleLike={handleToggleLike}
@@ -206,7 +218,7 @@ export default function App() {
           topicStories={TOPIC_STORIES}
         />
 
-        {/* Right Sidebar (Desktop xl only) */}
+        {/* Right Sidebar (Desktop xl only: Trending 01-05, Events, Who to Follow) */}
         <RightSidebar
           researchPapers={RESEARCH_PAPERS}
           scientists={FEATURED_SCIENTISTS}
@@ -224,10 +236,16 @@ export default function App() {
           setSearchQuery('');
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
-        onOpenCreatePost={() => setIsCreatePostOpen(true)}
+        onOpenCreatePost={() => setIsFacebookCreatePostOpen(true)}
       />
 
       {/* 4. Modals & Drawers */}
+      <FacebookCreatePostModal
+        isOpen={isFacebookCreatePostOpen}
+        onClose={() => setIsFacebookCreatePostOpen(false)}
+        onSubmitPost={handleCreateCommunityPost}
+      />
+
       <ArticleReaderModal
         article={activeReadingArticle}
         onClose={() => setActiveReadingArticle(null)}
